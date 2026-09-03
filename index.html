@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="취업을 위한 개인 포트폴리오 소개 페이지">
+  <title>My Portfolio | 성장과 역량</title>
+
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --surface: #ffffff;
+      --text: #171923;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --accent: #2563eb;
+      --accent-dark: #1d4ed8;
+      --soft-blue: #eff6ff;
+      --shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Pretendard", "Noto Sans KR", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1100px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+    }
+
+    .nav {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      font-size: 14px;
+      color: #4b5563;
+    }
+
+    .nav-links a {
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 0 80px;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(37, 99, 235, 0.12), transparent 28%),
+        radial-gradient(circle at 10% 80%, rgba(59, 130, 246, 0.08), transparent 25%);
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: 8px 13px;
+      margin-bottom: 22px;
+      border-radius: 999px;
+      background: var(--soft-blue);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 1.08;
+      letter-spacing: -0.065em;
+      margin-bottom: 26px;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero p {
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 18px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 36px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 20px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .btn-primary {
+      color: white;
+      background: var(--accent);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: white;
+      border: 1px solid var(--line);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Sections */
+    section {
+      padding: 110px 0;
+    }
+
+    .section-header {
+      margin-bottom: 45px;
+    }
+
+    .section-number {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(30px, 5vw, 46px);
+      letter-spacing: -0.05em;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .section-header p {
+      color: var(--muted);
+    }
+
+    /* Strength */
+    .strength-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .strength-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: var(--shadow);
+      transition: transform 0.25s ease;
+    }
+
+    .strength-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--soft-blue);
+      color: var(--accent);
+      font-weight: 900;
+      margin-bottom: 22px;
+    }
+
+    .strength-card h3 {
+      font-size: 19px;
+      margin-bottom: 10px;
+      letter-spacing: -0.03em;
+    }
+
+    .strength-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Credentials */
+    .credential-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .credential {
+      display: grid;
+      grid-template-columns: 90px 1fr auto;
+      align-items: center;
+      gap: 25px;
+      padding: 26px 30px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .credential-icon {
+      width: 62px;
+      height: 62px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: var(--soft-blue);
+      color: var(--accent);
+      font-weight: 900;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .credential h3 {
+      font-size: 18px;
+      margin-bottom: 3px;
+      letter-spacing: -0.03em;
+    }
+
+    .credential p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .status {
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: #f0fdf4;
+      color: #15803d;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    /* Privacy */
+    .privacy {
+      background: #111827;
+      color: white;
+    }
+
+    .privacy .section-number {
+      color: #93c5fd;
+    }
+
+    .privacy .section-header p {
+      color: #9ca3af;
+    }
+
+    .privacy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .privacy-card {
+      padding: 30px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .privacy-card h3 {
+      margin-bottom: 16px;
+      font-size: 18px;
+    }
+
+    .privacy-card ul {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      color: #d1d5db;
+      font-size: 14px;
+    }
+
+    .privacy-card li::before {
+      content: "•";
+      margin-right: 9px;
+      color: #93c5fd;
+    }
+
+    /* Closing */
+    .closing {
+      text-align: center;
+      padding: 130px 0;
+    }
+
+    .closing h2 {
+      max-width: 720px;
+      margin: 0 auto 18px;
+      font-size: clamp(30px, 5vw, 50px);
+      letter-spacing: -0.05em;
+      line-height: 1.25;
+    }
+
+    .closing p {
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    footer {
+      padding: 30px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 760px) {
+      .nav {
+        height: 64px;
+      }
+
+      .nav-links {
+        gap: 14px;
+        font-size: 12px;
+      }
+
+      .hero {
+        padding-top: 100px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .strength-grid,
+      .privacy-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .credential {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      .status {
+        width: fit-content;
+      }
+
+      section {
+        padding: 80px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container nav">
+      <a href="#top" class="logo">PORTFOLIO.</a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#credentials">교육 및 자격</a></li>
+          <li><a href="#strength">강점</a></li>
+          <li><a href="#my-strengths">나의 강점</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="eyebrow">CAREER PORTFOLIO</div>
+
+          <h1>
+            배우고 증명하며<br>
+            <span>성장하는 개발자</span>
+          </h1>
+
+          <p>
+            교육 과정과 자격증을 통해 쌓아온 기술 역량을 바탕으로
+            실무에서 꾸준히 배우고 성장하는 인재가 되고자 합니다.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#privacy" class="btn btn-primary">
+              공개 범위 보기
+            </a>
+            <a href="#credentials" class="btn btn-secondary">
+              교육 및 자격 보기
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Credentials -->
+    <section id="credentials">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-number">01 / CREDENTIALS</div>
+          <h2>교육 및 자격</h2>
+          <p>취업 과정에서 보여드리고 싶은 핵심 이력입니다.</p>
+        </div>
+
+        <div class="credential-list">
+
+          <article class="credential">
+            <div class="credential-icon">EDU</div>
+            <div>
+              <h3>SKT New-Deal ALEPH 과정 이수</h3>
+              <p>실무 역량과 IT 기술에 대한 이해를 넓힌 교육 과정</p>
+            </div>
+            <span class="status">이수</span>
+          </article>
+
+          <article class="credential">
+            <div class="credential-icon">IT</div>
+            <div>
+              <h3>정보처리기사</h3>
+              <p>소프트웨어 개발 및 IT 전반의 기본 역량을 증명하는 국가기술자격</p>
+            </div>
+            <span class="status">취득</span>
+          </article>
+
+          <article class="credential">
+            <div class="credential-icon">SQL</div>
+            <div>
+              <h3>SQLD</h3>
+              <p>데이터베이스와 SQL 활용 능력을 증명하는 자격</p>
+            </div>
+            <span class="status">취득</span>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Strength -->
+    <section id="strength">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-number">02 / STRENGTH</div>
+          <h2>취업 시 어필할 수 있는 역량</h2>
+          <p>현재 보유하고 있는 교육 경험과 자격을 중심으로 정리했습니다.</p>
+        </div>
+
+        <div class="strength-grid">
+
+          <article class="strength-card">
+            <div class="card-icon">01</div>
+            <h3>실무 중심 교육 경험</h3>
+            <p>
+              2026년 8월 11일부터 11월 12일까지 코리아 IT 아카데미 대구점에서 SKT New-Deal ALEPH 과정을 이수하며 현업에서 활용할 수 있는 기술과 문제 해결 능력을 길렀습니다. 강의를 들으며 라우터 및 방화벽 프로그램을 다루어 실습해보고 팀원과 함께 프로젝트를 진행하여 실무에 가능한 한 빨리 투입될 수 있도록 역량을 쌓아올렸습니다.
+            </p>
+          </article>
+
+          <article class="strength-card">
+            <div class="card-icon">02</div>
+            <h3>기본기와 전공 역량</h3>
+            <p>
+              정보처리기사 자격증을 취득하기 위해 매일 인터넷 강의를 곁들이고 교재를 풀어보았습니다. 소프트웨어와 IT 전반에 대한 지식을 갖추어 ALEPH 교육 과정에서 약간의 진도 우위를 점할 수 있었습니다.
+            </p>
+          </article>
+
+          <article class="strength-card">
+            <div class="card-icon">03</div>
+            <h3>데이터 활용 역량</h3>
+            <p>
+              SQLD 자격증 취득을 위해 SQL을 다루는 방법과 개념에 대해 공부하였고, 자격증을 취득하여 기본적인 이해와 활용 역량을 갖추었습니다.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing -->
+    <!-- My Strengths -->
+    <section id="my-strengths">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-number">03 / MY STRENGTHS</div>
+          <h2>나의 강점</h2>
+          <p>제가 가진 강점을 실제 경험을 바탕으로 소개합니다.</p>
+        </div>
+
+        <div class="strength-grid">
+          <article class="strength-card">
+            <div class="card-icon">01</div>
+            <h3>배려</h3>
+            <p>
+              상대방이 실습 시연 대상으로 뽑혀나가면 필기를 할 수 없어 나에게 시연을 대신 해달라 하였습니다. 고민하던 때, 시연 대상이 되어 나 또한 필기를 하지 못하게 되는 것을 감수하고 대신 시연하겠다 했습니다.
+            </p>
+          </article>
+
+          <article class="strength-card">
+            <div class="card-icon">02</div>
+            <h3>인내심</h3>
+            <p>
+              캡스톤 프로젝트에서 편입해온지 얼마 되지 않은 팀원들이 있었습니다. 이 팀원은 기초만 할 줄 알고 대부분의 것을 급히 습득해나가야 하는 상황이었는데, 이 팀원에게 스스로 학습할 수 있는 유튜브 채널들을 소개해주고 스스로 학습해나가며 자신의 몫을 수행할 수 있기까지 과제를 내며 프로젝트를 수행하고, 무사히 결과물을 내보일 수 있었습니다.
+            </p>
+          </article>
+
+          <article class="strength-card">
+            <div class="card-icon">03</div>
+            <h3>이끌어주기</h3>
+            <p>
+              현재 ALEPH 수업 중 내가 먼저 앞서나가 알려줄 수 있는 위치였습니다. 이해하지 못해 따라오지 못한 학생이 있을 때 먼저 다가가 어떤 식으로 하면 될지 알려준 적이 있었습니다. 덕분에 그 학생은 무사히 실습을 마쳤습니다.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div class="container">
+        <h2>
+          배운 것을 바탕으로<br>
+          실무에서 성장하겠습니다.
+        </h2>
+
+        <p>
+          교육과 자격증에서 멈추지 않고 실제 문제를 해결할 수 있는 역량을 만들어가겠습니다.
+        </p>
+
+        <a href="#top" class="btn btn-primary">처음으로</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 My Portfolio. All rights reserved.
+    </div>
+  </footer>
+
+</body>
+</html>
